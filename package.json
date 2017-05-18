@@ -1,0 +1,24 @@
+{
+  "name": "cmsgen",
+  "version": "1.0.0",
+  "description": "A simple codeGenerator for Swagger",
+  "preferGlobal": true,
+  "scripts": {
+    "test": "node bin/codeGenerator.js"
+  },
+  "keywords": [
+    "CodeGen",
+    "Swagger",
+    "Node"
+  ],
+  "author": "apurvjain17",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^3.0.6",
+    "js-yaml": "^3.8.3",
+    "log4js": "^1.1.1"
+  },
+  "bin":{
+    "cmsgen":"bin/codeGenerator.js"
+  }
+}

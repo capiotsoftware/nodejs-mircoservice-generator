@@ -1,0 +1,63 @@
+{
+    "list": [{
+        "name": "IFSC Master",
+        "sequence": 2,
+        "fields": [{
+
+            "name": "_id",
+            "title": "Id",
+            "type": "number"
+
+        }, {
+            "name": "ifsc_code",
+            "title": "IFSC Code",
+            "type": "string"
+        }, {
+            "name": "bank_name",
+            "title": "Bank",
+            "type": "string",
+            "options": {
+                "maxCharacters": 50
+            }
+        }, {
+            "name": "branch_address",
+            "title": "Address",
+            "type": "largeString",
+            "options": {
+                "maxCharacters": 100
+            }
+        },{
+            "name":"complexObject",
+            "title":"complexObject1",
+            "type":{
+                "fields":[{
+                    "name":"field1",
+                    "title":"title1",
+                    "type":"string"
+                },{
+                    "name":"field2",
+                    "title":"title2",
+                    "type":"number"
+                }]
+            }
+        },{
+            "name":"complexObjectArray",
+            "title":"complexObject1",
+            "type":[{
+                "fields":[{
+                    "name":"field1",
+                    "title":"title1",
+                    "type":"string"
+                },{
+                    "name":"field2",
+                    "title":"title2",
+                    "type":"number"
+                }]
+            }]
+        },{
+            "name":"SimpleArray",
+            "title":"SimpleArray",
+            "type":["string"]
+        }]
+    }]
+}

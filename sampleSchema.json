@@ -1,0 +1,28 @@
+{
+    "name":"Ifsc",
+    "collectionName":"IFSC",
+    "modelName":"IFSC",
+    "api":"ifsc",
+    "idPrefix":"IF",
+    "definition":{
+        "_id":{"type":"String"},
+        "ifsc_code":{"type":"String", "enum":["value1", "value2"]},
+        "bank_name":{"type":"String", "unique":true},
+        "branch_address":{"type":"String", "required":true},
+        "complexObject":{
+            "definition":{
+                "field1":{"type":"String"},
+                "field2":{"type":"Number", "enum":[1,2,3,4]}
+            }
+        },
+        "complexObjectArray":[{
+            "definition":{
+                "field1":{"type":"String","default":"Abcd"},
+                "field2":{"type":"Number"}
+            }
+        }], 
+        "simpleArray":[{
+            "type":"String"
+        }]
+    }
+}
