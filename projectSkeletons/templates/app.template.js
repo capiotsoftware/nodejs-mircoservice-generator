@@ -11,10 +11,10 @@ client.on("error", function (err) {
 puttu.init(client);
     `:"";
     var puttuRegister = config.puttuName?`puttu.register("${config.projectName}", {
-        protocol: "http",
-        port: port,
-        api: "/${config.basePath}/"
-    }).catch(err => logger.error(err));
+            protocol: "http",
+            port: port,
+            api: "/${config.basePath}/"
+        }).catch(err => logger.error(err));
 `:"";
     var appJs = `
 "use strict";

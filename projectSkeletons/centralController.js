@@ -31,6 +31,7 @@ exports.v1_${name}List = ${name}Controller.index;
 exports.v1_${name}Show = ${name}Controller.show;
 exports.v1_${name}Destroy = ${name}Controller.destroy;
 exports.v1_${name}Update = ${name}Controller.update;
+
 `;
     var insertPoint = data.indexOf("module.exports");
     var newFile = data.substr(0,insertPoint)+newModules+data.substr(insertPoint);

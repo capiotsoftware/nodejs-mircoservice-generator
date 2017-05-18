@@ -1,5 +1,5 @@
 {
-  "name": "cmsgen",
+  "name": "nodejs-microservice-generator",
   "version": "1.0.0",
   "description": "A simple codeGenerator for Swagger",
   "preferGlobal": true,
@@ -19,6 +19,6 @@
     "log4js": "^1.1.1"
   },
   "bin":{
-    "cmsgen":"bin/codeGenerator.js"
+    "msgen":"bin/codeGenerator.js"
   }
 }
