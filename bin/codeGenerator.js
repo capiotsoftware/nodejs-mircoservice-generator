@@ -10,13 +10,13 @@
  * 
  */
 const installPackages = require("../lib/installPackages.js");
-const { generateDefinition } = require("../lib/createDefinition.js");
 const fileIO = require("../lib/fileIO.js");
 const inquirer = require("inquirer");
 const log4js = require("log4js");
 const logger = log4js.getLogger("CodeGen");
 const prompt = inquirer.createPromptModule();
-const questions = require("../lib/questions").questions;
+const { questions } = require("../lib/questions");
+const { generateDefinition } = require("../lib/createDefinition.js");
 const { createAppjsfile } = require("../projectSkeletons/app.js");
 const { createController } = require("../projectSkeletons/controller.js");
 const { centralController } = require("../projectSkeletons/centralController.js");
