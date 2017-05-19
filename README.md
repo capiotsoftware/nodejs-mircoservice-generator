@@ -1,4 +1,4 @@
-# Swagger Code Generatory
+# Swagger Code Generator
 
 
 Swagger code generator takes a fixed set of arguments through the command line interface and creates a micro service with five operations being Create, List, Show, Delete, Update. It takes in a configuration file as an input and generates a mongoose as well as swagger definition along with it.
@@ -29,6 +29,8 @@ Here's the configuration file:-
     "name":"Ifsc",
     "collectionName":"IFSC",
     "modelName":"IFSC",
+    "api":"ifsc",
+    "idPrefix":"IF",
     "definition":{
         "_id":{"type":"String"},
         "ifsc_code":{"type":"String", "enum":["value1", "value2"]},
@@ -51,6 +53,7 @@ Here's the configuration file:-
         }]
     }
 }
+
 
 ```
 
