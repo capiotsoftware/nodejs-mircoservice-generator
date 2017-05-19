@@ -24,7 +24,7 @@ const { generateYaml } = require("../projectSkeletons/generateYaml.js");
 const { generateFolderStructure } = require("../projectSkeletons/createProjectStructure");
 
 global.logger = logger;
-var config = {};
+
 function init(){
     prompt(questions)
     .then(result => startProcessing(result))
