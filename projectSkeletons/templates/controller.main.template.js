@@ -14,7 +14,7 @@ var options = {
     logger:logger,
     collectionName:"${collectionName}"
 };
-schema.pre("save", cuti.counter.getIdGenerator("${name}", "${configFile.idPrefix}"));
+schema.pre("save", cuti.counter.getIdGenerator("${configFile.idPrefix}", "${name}"));
 var crudder = new SMCrud(schema,"${modelName}", options);
 module.exports = {
     create:crudder.create,
