@@ -3,6 +3,7 @@ module.exports = function(config){
 const redis = require("redis");
 const client = redis.createClient();
 
+
 client.on("error", function (err) {
     logger.error("Redis Disconnected, stopping service");
     process.exit(0);
@@ -11,10 +12,10 @@ client.on("error", function (err) {
 puttu.init(client);
     `:"";
     var puttuRegister = config.puttuName?`puttu.register("${config.projectName}", {
-            protocol: "http",
-            port: port,
-            api: "/${config.basePath}/"
-        }).catch(err => logger.error(err));
+        protocol: "http",
+        port: port,
+        api: "/${config.basePath}/"
+    }).catch(err => logger.error(err));
 `:"";
     var appJs = `
 "use strict";
@@ -24,21 +25,37 @@ const cuti = require("cuti");
 const log4js = cuti.logger.getLogger;
 const logger = log4js.getLogger("${config.projectName}");
 const bluebird = require("bluebird");
-const mongoose = require("mongoose");
-const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/${config.db}";
+const Sequelize = require("sequelize");
+const pg = require('pg');
 ${puttuRedis}
 global.Promise = bluebird;
 global.logger = logger;
 
-mongoose.connect(mongoUrl, err =>{
-    if(err){
-        logger.error(err);
-    }
-    else{
-        logger.info("Connected to DB");
-    }
-});
+var dbName = "${config.db}";
+dbName = dbName.toLowerCase();
+var conStringPostgres = 'postgres://postgres:welcome@localhost:5432/postgres';
+var conStringDB = 'postgres://postgres:welcome@localhost:5432/' + dbName;
 
+var pgClient = new pg.Client(conStringPostgres);
+try{
+    pgClient.connect().then(()=>{
+        pgClient.query("select count(*) from pg_catalog.pg_database where datname = '"+dbName+"'").then(result=>{
+		var dbCount = result.rows[0].count;
+		if(dbCount=="1"){
+			console.log("Database Exist");
+			registerSwagger();
+		}else{
+            pgClient.query('CREATE DATABASE '+dbName).then(result=>{
+				registerSwagger();
+				});
+			}
+	});
+
+  });
+
+}catch(err){
+  console.log(err);
+}
 var counter = 0;
 var logMiddleware = (req, res, next) => {
     var reqId = counter++;
@@ -55,26 +72,26 @@ app.use(logMiddleware);
 var config = {
     appRoot: __dirname
 };
-module.exports = app; 
+module.exports = app;
 
 
+function registerSwagger(){
+  SwaggerExpress.create(config, function(err, swaggerExpress) {
+      if (err) { throw err; }
 
-SwaggerExpress.create(config, function(err, swaggerExpress) {
-    if (err) { throw err; }
+      swaggerExpress.register(app);
 
-    swaggerExpress.register(app);
+      var port = process.env.PORT || ${config.port};
+      app.listen(port, (err) => {
+          if(!err){
+              ${puttuRegister}
+              logger.info("Server started on port "+port);
+          }
+          else
+              logger.error(err);
+      });
 
-    var port = process.env.PORT || ${config.port};
-    app.listen(port, (err) => {
-        if(!err){
-            ${puttuRegister}
-            logger.info("Server started on port "+port);
-        }
-        else
-            logger.error(err);
-    });
-
-});
-    `;
-    return appJs;    
+  });
+}    `;
+    return appJs;
 };

@@ -1,28 +1,76 @@
 {
-    "name":"Ifsc",
-    "collectionName":"IFSC",
-    "modelName":"IFSC",
-    "api":"ifsc",
-    "idPrefix":"IF",
-    "definition":{
-        "_id":{"type":"String"},
-        "ifsc_code":{"type":"String", "enum":["value1", "value2"]},
-        "bank_name":{"type":"String", "unique":true},
-        "branch_address":{"type":"String", "required":true},
-        "complexObject":{
-            "definition":{
-                "field1":{"type":"String"},
-                "field2":{"type":"Number", "enum":[1,2,3,4]}
+    "name": "deals",
+    "collectionName": "deals",
+    "modelName": "deals",
+    "api": "/domain/deals/",
+    "idPrefix": "DE",
+    "definition": {
+      "_id": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String",
+        "required": true
+      },
+      "shortName": {
+        "type": "String"
+      },
+      "template_id": {
+        "type": "String",
+        "required": true
+      },
+      "contact_id": [
+        {
+          "type": "String"
+        }
+      ],
+      "businessSegnment_id": {
+        "type": "String",
+        "required": true
+      },
+      "duration": {
+        "definition": {
+          "start": {
+            "type": "Date",
+            "required": true
+          },
+          "end": {
+            "type": "Date"
+          }
+        }
+      },
+      "processingUnits": [
+        {
+          "type": "String"
+        }
+      ],
+      "purposes": [
+        {
+          "definition": {
+            
+            "name": {
+              "type": "String"
+            },
+            "templatePurpose_id": {
+              "type": "String"
             }
-        },
-        "complexObjectArray":[{
-            "definition":{
-                "field1":{"type":"String","default":"Abcd"},
-                "field2":{"type":"Number"}
+          }
+        }
+      ],
+      "attributes": [
+        {
+          "definition": {
+            "name": {
+              "type": "String"
+            },
+            "value": {
+              "type": "String"
+            },
+            "templateAttribute_id": {
+              "type": "String"
             }
-        }], 
-        "simpleArray":[{
-            "type":"String"
-        }]
+          }
+        }
+      ]
     }
-}
+  }

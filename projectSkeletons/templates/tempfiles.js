@@ -122,7 +122,9 @@ function packageJson(config){
         "mongoose": "^4.9.9",
         "puttu-redis": "git+https://github.com/capiotsoftware/puttu-redis.git",
         "swagger-express-mw": "^0.1.0",
-        "swagger-mongoose-crud": "git+https://github.com/capiotsoftware/swagger-mongoose-crud.git"
+        "swagger-sequelize-crud": "git+https://bitbucket.org/capiot/swagger-sequelize-crud.git",
+        "sequelize": "^4.11.5",
+        "pg": "^7.3.0"
     }
 }
 `;
